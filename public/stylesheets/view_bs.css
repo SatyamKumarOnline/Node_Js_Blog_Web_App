@@ -1,0 +1,18 @@
+.container {
+    margin-top : 5px;
+}
+
+
+/* These classes are not working.
+#exampleInputEmail1, #exampleInputPassword1 {
+    width:40%;
+}
+
+#exampleInputPassword1 {
+    height: 150px;
+}
+
+textarea {
+    width: 40%;
+}
+*/
