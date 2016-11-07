@@ -1,0 +1,324 @@
+ZmSecureCertificate.prototype.loadCertificate   --->  GetSmimeCertificateInfoRequest
+ZmSecureCertificate.prototype._handleLoadCertificate  --->
+
+if(response) {
+        this._certificate = response;
+
+
+
+
+ZmSecureMailCertificate.js  -- file that u need 
+ZmSecureCertificate.prototype._showCertificate = function(certificate) {
+
+
+
+data refers to the passed passed value data value in expand from template.
+Data is getting generated from here :- <template id='com_zimbra_smime#Certificate'> 
+
+cert
+
+function getProcessedCertificate  = ;
+
+
+
+var  stringToObj = function(commaSeperatedValues) {
+
+  for (var i =0; i < commaSeperatedValues.length; i++) {
+  var operatorSeperatedValues  = commaSeperatedValues[i].split('=');
+  var key = operatorSeperatedValues[0];
+  var value = operatorSeperatedValues[1];
+  certificate.issuerDn[0][key] = value
+}
+};
+
+
+
+
+var getProcessedCertificateObj = function(certificate) {
+
+stringToObj(certificate.issuerDn[0]._content.split(','));
+stringToObj(certificate.subjectDn[0]._content.split(','));
+
+}
+
+
+
+
+var  getProcessedCertificate = function(certificate) {
+
+var key = ['issuerDn', 'subjectDn'];
+
+for (var i =0; i < key.length; i++) {
+    var commaSeperatedValues = certificate[key[i]][0]._content.split(',')
+    for (var j =0; j < commaSeperatedValues.length; j++) {
+    var operatorSeperatedValues  = commaSeperatedValues[j].split('=');
+    var subKey = operatorSeperatedValues[0];
+    var value = operatorSeperatedValues[1];
+    certificate[key[i]][subKey] = value
+  }
+    delete certificate[key[i]][0];
+}
+};
+
+getProcessedCertificate(certificate);
+
+
+
+
+
+
+certIssuedTo = Issued to
+certIssuer = Issued by
+certValidity = Period of Validity
+certSignature = Signature
+
+
+
+certissuerCN = Common Name(CN)
+certissuerOrg = Organization(O)
+certissuerOrgUnit = Organizational Unit(OU)
+certissuerEmail = Email(EMAILADDRESS)
+certissuerCountry = Country(C)
+certissuerState = State(ST)
+
+
+
+
+certValidityBegin = Begins on
+certValidityEnd = Ends on 
+
+
+certInfoSN = Serial number(SN)
+certInfoAlg = Algorithm
+
+
+
+var  getProcessedCertificate = function(certificate) {
+
+var key = ['issuerDn', 'subjectDn'];
+
+for (var i =0; i < key.length; i++) {
+    var commaSeperatedValues = certificate[key[i]][0]._content.split(',')
+    for (var j =0; j < commaSeperatedValues.length; j++) {
+    var operatorSeperatedValues  = commaSeperatedValues[j].split('=');
+    var subKey = operatorSeperatedValues[0];
+    var value = operatorSeperatedValues[1];
+    certificate[key[i]][subKey] = value
+  }
+    delete certificate[key[i]][0];
+}
+};
+
+getProcessedCertificate(certificate);
+
+
+
+
+
+
+
+//// ///////////////////////////////here
+
+
+function clone(obj) {
+    if (null == obj || "object" != typeof obj) return obj;
+    var copy = obj.constructor();
+    for (var attr in obj) {
+        if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+    }
+    return copy;
+}
+
+
+
+var  getProcessedCertificate = function(certificate) {
+
+var key = ['issuerDn', 'subjectDn'];
+var certificateCopy = clone(certificate);
+
+
+for (var i =0; i < key.length; i++) {
+    console.log(certificateCopy);
+    certificate[key[i]] = {};
+    console.log(certificateCopy);
+    var commaSeperatedValues = certificateCopy[key[i]][0]._content.split(',')
+    for (var j =0; j < commaSeperatedValues.length; j++) {
+    var operatorSeperatedValues  = commaSeperatedValues[j].split('=');
+    var subKey = operatorSeperatedValues[0];
+    var value = operatorSeperatedValues[1];
+    certificate[key[i]][subKey] = value
+  }
+   // delete certificate[key[i]][0];
+}
+};
+
+getProcessedCertificate(certificate);
+
+
+
+
+var viewResponseValueMap = {
+   ' C' : 'certissuerCountry',
+   ' ST' : 'certissuerState',
+   ' O' : 'certissuerOrg',
+   ' OU' : 'certissuerOrgUnit',
+   ' CN' : 'certissuerCN',
+   'EMAILADDRESS' : 'EMAILADDRESS'
+};
+
+
+
+
+var updateResObjIssueField = function () {
+var keyArr = ['issuerDn','subjectDn'];
+for (var i = 0; i < keyArr.length; i++) {
+var key = keyArr[i];
+var  issueDetailObj= certificate[key];
+for (var j in issueDetailObj) {
+  //console.log(issueDetailObj);
+  var value = issueDetailObj[j];
+  delete issueDetailObj[j];
+  issueDetailObj[viewResponseValueMap[j]] = value;
+  //console.log('11:: '+issueDetailObj[viewResponseValueMap[j]]);
+
+  
+  console.log(issueDetailObj[viewResponseValueMap[j]]);
+}
+}
+}
+
+
+updateResObjIssueField();
+
+
+
+
+
+
+//////
+
+for (var i = 0; i > certificate.issuerDn.length; i++) {
+  console.log(certificate.issuerDn[i]);
+}
+
+
+
+
+
+var keyArr = ['issuerDn', 'subjectDn'];
+for (var i = 0; i < keyArr.length; i++) {
+var key = keyArr[i];
+var  issueDetailObj= certificate[keyArr[i]];
+for (var i in issueDetailObj) {
+  console.log(issueDetailObj);
+  var value = issueDetailObj[i];
+  issueDetailObj[viewResponseValueMap[i]] = value;
+  //console.log('11:: '+issueDetailObj[viewResponseValueMap[i]]);
+
+  //delete issueDetailObj[i];
+  console.log(issueDetailObj[viewResponseValueMap[i]]);
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+For validity and signature
+
+match them and then process them
+
+certificate.validity[0].endDate[0]._content
+
+certificate.signature[0].algorithm[0]._content
+
+
+For validity and signature , make a if check and get the content 
+
+
+  
+Issued by  -- key
+  
+  Object { Common Name:="Prashant TestCA",  City:="Palo Alto",  Organization:="Zimbra"}
+City:
+  
+  "Palo Alto"
+Common Name:
+  
+  "Prashant TestCA"
+Organization:
+  
+  "Zimbra"
+
+
+
+
+
+SecureEmailTempalte.js
+CertificateUserView -->  new CertificateView({p
+
+JSON.stringify(data.cert)
+
+"{"_summary_":{"imgClassName":"CertificateValidImg","header":"pa2","lines":["Issued by: Prashant TestCA","Expires: Wednesday, August 9, 2017"]},"Issued to":{"Common Name":"pa2","Country:":"United States","Organization:":"Zimbra","Organizational Unit:":"Dev"},"Issued by":{"Common Name:":"Prashant TestCA","City:":"Palo Alto","Organization:":"Zimbra"},"Validity":{"Issued on:":"Tuesday, August 9, 2016","Valid until:":"Wednesday, August 9, 2017"},"Signature":{"Serial number:":"1048578","Algorithm:":"SHA256with RSA"}}"
+
+
+data.cert[key]
+
+Object { Common Name="pa2",  Country:="United States",  Organization:="Zimbra",  more...}
+
+JSON.stringify(data.cert[key])
+"{"Common Name":"pa2","Country:":"United States","Organization:":"Zimbra","Organizational Unit:":"Dev"}"
+key
+"Issued to"
+
+
+
+
+
+
+https://stash.corp.synacor.com/projects/ZIMBRA/repos/zm-securemail-zimlet/browse/js/ZmSecureMailCertificate.js?at=6f21e30d2c33addfe61814399aa1d440355dd668
+
+git diff
+diff --git a/js/ZmCertificatePasswordDialog.js b/js/ZmCertificatePasswordDialog.js
+index 336e34e..266f3ee 100644
+--- a/js/ZmCertificatePasswordDialog.js
++++ b/js/ZmCertificatePasswordDialog.js
+@@ -114,7 +114,7 @@ ZmCertificatePasswordDialog.prototype._toggleOKButton = function(enable) {
+ 
+ /**
+  *
+- * @returns {string} starter string for buttons container
++ * @returns {string} starter string for but`tons container
+  * @private
+  */
+ ZmCertificatePasswordDialog.prototype._getButtonsContainerStartTemplate = function() {
+diff --git a/js/ZmSecureMail.js b/js/ZmSecureMail.js
+index 29b3d17..6b1b55d 100644
+--- a/js/ZmSecureMail.js
++++ b/js/ZmSecureMail.js
+@@ -40,6 +40,7 @@ ZmSecureMail.SECUREMAIL_SECURITY_TYPES = {
+  * Init function, will be called automatically by Zimlet framework
+  */
+ ZmSecureMail.prototype.init = function() {
++    
+ 
+     //If mail is not enabled, return
+     if (!appCtxt.get(ZmSetting.MAIL_ENABLED) || !this._hasSMIMEFeature())
+@@ -63,6 +64,7 @@ ZmSecureMail.prototype.toString = function() {
+  * @private
+  */
+ ZmSecureMail.prototype._hasSMIMEFeature = function() {
++    return true;
+     var status = appCtxt.get(ZmSetting.LICENSE_STATUS);
+ 
+     if (ZmSetting.LICENSE_MSG[status])
+Satyams-MacBook-Pro:zm-securemail-zimlet kumars$ 
+
+
