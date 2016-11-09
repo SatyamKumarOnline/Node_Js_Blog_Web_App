@@ -42,10 +42,12 @@ Blog.constructBlogUI = function(resData){
             var title = value.title,
                 content = value.content,
                 blogDate = value.DOC,
+                date = new Date(value.DOC),
                 clonedBlogDataNode = blogDataNode.cloneNode(true);
 
-            clonedBlogDataNode.getElementsByTagName('h4')[0].innerText = title;
-            clonedBlogDataNode.getElementsByTagName('p')[0].innerText = content;
+            clonedBlogDataNode.getElementsByTagName('h1')[0].innerText = title;
+            clonedBlogDataNode.getElementsByClassName('navbar-text')[0].innerText = content;
+            clonedBlogDataNode.getElementsByClassName('date')[0].innerText = date;
 
             _div.appendChild(clonedBlogDataNode);
 
