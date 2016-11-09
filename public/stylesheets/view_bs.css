@@ -2,6 +2,15 @@
     margin-top : 5px;
 }
 
+[data-blog='detail'] {
+    overflow: auto;
+    border: 1px solid red;
+}
+
+.date {
+    float:right;
+    font-style:italics;
+}
 
 /* These classes are not working.
 #exampleInputEmail1, #exampleInputPassword1 {
