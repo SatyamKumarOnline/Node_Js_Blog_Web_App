@@ -7,9 +7,7 @@ var Blog = function() {
 };
 
 Blog.showForm = function(ev){
-    ev.preventDefault();
     $(this).tab('show');
-    document.forms[0].style.display = '';
 };
 
 /* To do :- Optimization stuff, donot fire 'showAll' request on
@@ -18,17 +16,15 @@ Blog.showForm = function(ev){
 
 
 Blog.showAllBlog = function(ev){
-            ev.preventDefault();
+    console.log('showallblog function');
             $(this).tab('show');
-            document.forms[0].style.display = 'none';
-            // To do: - fire request to fetch the blog content, showAll
     $.ajax({
         url : '/showAll',
         async : true
     }).done(function(resData){
         var blogData = resData;
         Blog.constructBlogUI(resData);
-        console.log(resData);
+        //console.log(resData);
         // write code to show the JSON response data in UI.
     });
 };
@@ -38,7 +34,7 @@ Blog.constructBlogUI = function(resData){
     var _div = document.querySelector('.container');
     resData.forEach(function(value,key){
         if(value) {
-            console.log("value is :: ",value);
+         // console.log("value is :: ",value);
             var title = value.title,
                 content = value.content,
                 blogDate = value.DOC,
