@@ -35,7 +35,6 @@ var createblogPost = function(blogTitle, blogContent, blogDate) {
         console.log('Blog details saved in DB:: '+ blogInstance);
       }
     });
-
 };
 
 
@@ -46,12 +45,31 @@ var getDate = function(req,res,next){
   next();
 };
 
+// retrieve all blog post data from mongo db and show them to the client
+app.get('/showAll',getDate, function(req,res){
+  console.log('In show function');
+  Blog.find({}, function(err, data){
+    if (err) {
+      console.log('Error is :: '+err);
+    } else {
+     // res.redirect('/index.html');
+      res.send(data);
+      res.end();
+    }
+  });
+});
+
+
+app.get('/new',getDate, function(req,res){
+  res.redirect('/new.html');
+  res.end();
+});
 
 /**
  *  Creats a blog content with title and save that to DB.
  */
 
-app.get('/CreateBlog',getDate, function(req,res){
+app.get('/createBlog',getDate, function(req,res){
   console.log("Date is "+req.date);
   var blogTitle = req.query.blogTitle,
       blogContent = req.query.blogContent,
@@ -63,16 +81,5 @@ app.get('/CreateBlog',getDate, function(req,res){
   res.end();
 });
 
-app.get('/showAll', function(req,res){
-  console.log('In show function');
-  Blog.find({}, function(err, data){
-    if (err) {
-      console.log('Error is :: '+err);
-    } else {
-      res.send(data);
-      res.end();
-    }
-  });
-});
 
 app.listen('8080');
