@@ -17,7 +17,6 @@
 <body>
 
 <div class="container">
-
     <!-- Static navbar -->
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -34,14 +33,17 @@
         </div><!--/.container-fluid -->
     </nav>
 
-    <!-- to do :- Blog detail section can be created dynamically using JS rather than hard coding -->
 
-    <div data-blog = 'detail'>
-    <h1></h1>
-    <p class="navbar-text"></p>
-        <br>
-        <p class="date"></p>
-    </div>
+    <!-- Show the response form the DB -->
+
+    <% name.forEach(function(value,key){ %>
+        <div data-blog = 'detail'>
+            <h1> <%= value.title %> </h1>
+            <p class="navbar-text"> <%= value.content %> </p>
+            <br>
+
+        </div>
+    <% }) %>
 
 </div> <!-- /container -->
 
@@ -53,9 +55,7 @@
 <script src="../../bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 <script src="../../javascripts/blog.js"></script>
 <script src="../../javascripts/event.js"></script>
-<script>
-    document.body.onload = Blog.showAllBlog;
-</script>
+
 
 
 </body>
