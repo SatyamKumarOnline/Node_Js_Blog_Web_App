@@ -2,6 +2,8 @@ var express = require('express');
 var mongoose = require('mongoose');
 var app = express();
 app.use(express.static(__dirname + '/public'));
+app.set('views','./views');
+app.set('view engine', 'ejs');
 
 mongoose.connect('mongodb://localhost/test');
 
@@ -45,14 +47,24 @@ var getDate = function(req,res,next){
   next();
 };
 
-// retrieve all blog post data from mongo db and show them to the client
-app.get('/showAll',getDate, function(req,res){
-  console.log('In show function');
+app.get('/', getDate, function(req,res){
+  // Get data from DB.
   Blog.find({}, function(err, data){
     if (err) {
       console.log('Error is :: '+err);
     } else {
-     // res.redirect('/index.html');
+      res.render('index',{name:data});
+      res.end();
+    }
+  });
+});
+
+// retrieve all blog post data from mongo db and show them to the client
+app.get('/showAll',getDate, function(req,res){
+  Blog.find({}, function(err, data){
+    if (err) {
+      console.log('Error is :: '+err);
+    } else {
       res.send(data);
       res.end();
     }
@@ -61,7 +73,7 @@ app.get('/showAll',getDate, function(req,res){
 
 
 app.get('/new',getDate, function(req,res){
-  res.redirect('/new.html');
+  res.render('new');
   res.end();
 });
 
@@ -77,7 +89,7 @@ app.get('/createBlog',getDate, function(req,res){
   console.log('Blog Date is ::: '+blogDate);
 
   createblogPost(blogTitle, blogContent, blogDate);
-  res.redirect('/index.html');
+  res.redirect('/');
   res.end();
 });
 
