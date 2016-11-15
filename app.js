@@ -3,8 +3,7 @@ var app = express();
 app.use(express.static(__dirname + '/public'));
 app.set('views','./views');
 app.set('view engine', 'ejs');
-var Blog = require('./public/javascripts/Post.js');
-
+var Blog = require('./blog.js');
 
 // Writing a middleware function that gives date.
 
@@ -25,6 +24,7 @@ app.get('/', getDate, function(req,res){
   });
 });
 
+// Render new form to enter new blog.
 app.get('/new',getDate, function(req,res){
   res.render('new');
   res.end();
@@ -53,8 +53,6 @@ var createblogPost = function(blogTitle, blogContent, blogDate) {
   });
 };
 
-
-
 app.get('/createBlog',getDate, function(req,res){
   console.log("Date is "+req.date);
   var blogTitle = req.query.blogTitle,
@@ -62,14 +60,11 @@ app.get('/createBlog',getDate, function(req,res){
       blogDate = req.date;
   console.log('Blog Date is ::: '+blogDate);
 
-
   createblogPost(blogTitle, blogContent, blogDate);
   res.redirect('/');
   res.end();
 });
 
-
 app.listen('8080');
 
-
-//To do :- Move all code related with moongoose to another File namely , Post.js .
+// Remaining  task :- remove some unwanted CSS from html files

@@ -2,17 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>index html file</title>
-
+    <title>Post Blog</title>
     <!-- Bootstrap -->
-
     <link href="./bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
     <link href="./stylesheets/view_bs.css" rel="stylesheet">
-
-
 </head>
 <body>
 
@@ -21,7 +14,6 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-
                 <a class="navbar-brand" href="#">My Little Bloggie</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
@@ -33,7 +25,6 @@
         </div><!--/.container-fluid -->
     </nav>
 
-
     <!-- Show the response form the DB -->
 
     <% blogData.forEach(function(value,key){ %>
@@ -44,20 +35,7 @@
 
         </div>
     <% }) %>
-
 </div> <!-- /container -->
-
-
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="./jQuery/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="../../bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-<script src="../../javascripts/blog.js"></script>
-<script src="../../javascripts/event.js"></script>
-
-
-
 </body>
 </html>
 
